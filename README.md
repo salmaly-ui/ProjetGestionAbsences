@@ -13,7 +13,7 @@ Mobile : Java 17, RecyclerView, Retrofit, MaterialCardView, SharedPreferences, S
 ---
 
 ## 📁 STRUCTURE DU PROJET
-````
+```
 GestionAbsence/
 ├── backend/
 │   ├── config/
