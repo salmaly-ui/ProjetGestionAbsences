@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name"> Gestion Absences </string>
+    <string name="gestion_absences_medicales">Gestion des absences médicales</string>
+    <string name="bonjour">Bonjour,</string>
+    <string name="mes_absences">Mes absences</string>
+    <string name="deconnexion">Déconnexion</string>
+    <string name="logo_ens">Logo ENS</string>
+    <string name="deconnexion_content">Déconnexion</string>
+    <string name="avatar_initials">SL</string>
+    <string name="bonjour_utilisateur">Bonjour,</string>
+    <string name="bonjour_nom">Bonjour, %s</string>
+    <string name="aucune_absence_declaree">Aucune absence déclarée</string>
+    <string name="message_absence_vide">Utilisez le bouton + pour déclarer une nouvelle absence</string>
+    <string name="aucune_absence">Aucune absence déclarée</string>
+    <string name="nouvelle_absence">Nouvelle absence</string>
+    <string name="declarer_absence">Déclarer une absence</string>
+    <string name="retour">← Retour</string>
+    <string name="date_debut">Date de début</string>
+    <string name="date_fin">Date de fin</string>
+    <string name="motif">Motif</string>
+    <string name="justificatif">Justificatif (PDF ou image)</string>
+    <string name="choisir_fichier">Choisir un fichier</string>
+    <string name="soumettre">Soumettre l\'absence</string>
+    <string name="detail_absence">Détail de l\'absence</string>
+    <string name="statut">Statut</string>
+    <string name="periode">Période</string>
+    <string name="historique">Historique des décisions</string>
+    <string name="voir_details">Voir détails →</string>
+    <string name="chargement">Chargement...</string>
+    <string name="email">Email</string>
+    <string name="mot_de_passe">Mot de passe</string>
+    <string name="se_connecter">Se connecter</string>
+    <string name="pas_de_compte">Pas de compte ?</string>
+    <string name="s_inscrire">S\'inscrire</string>
+    <string name="creer_compte">Créer un compte</string>
+    <string name="nom_complet">Nom complet</string>
+    <string name="confirmer_mdp">Confirmer le mot de passe</string>
+    <string name="inscription">Inscription</string>
+    <string name="deja_compte">Déjà un compte ?</string>
+    <string name="se_connecter_lien">Se connecter</string>
+    <string name="choisir_date">Choisir la date</string>
+    <string name="periode_absence">Période d\'absence</string>
+
+    <!-- Dashboard / statistiques -->
+    <string name="total">Total</string>
+    <string name="en_cours">En cours</string>
+    <string name="acceptees">Acceptées</string>
+    <string name="refusees">Refusées</string>
+    <string name="mes_absences_recentes">Mes absences récentes</string>
+    <string name="derniere_mise_a_jour">Dernière mise à jour</string>
+    <string name="zero">0</string>
+    <string name="soumettre_la_demande">Soumettre la Demande</string>
+    <string name="icone_utilisateur">Icône utilisateur</string>
+    <!-- icônes texte -->
+    <string name="icone_calendrier">📅</string>
+    <string name="icone_note">📝</string>
+</resources>
