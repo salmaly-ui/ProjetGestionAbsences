@@ -3,7 +3,6 @@
 Architecture générale : Base de données MySQL, backend Node.js/Express, frontend React, application mobile Android Java.
 
 ---
-
 ## 🧰 TECHNOLOGIES
 
 Backend : Node.js, Express, MySQL2, JWT, bcrypt, multer, dotenv.  
