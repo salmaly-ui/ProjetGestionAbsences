@@ -91,7 +91,14 @@ GestionAbsence/
         └── build.gradle
 ```
 ---
+## Demonstration (partie Web)
 
+
+
+https://github.com/user-attachments/assets/a18dc6f4-8a73-4be8-a2ad-736f758b9fa0
+
+
+---
 ## 🗄️ BASE DE DONNÉES (MySQL)
 ```sql
 CREATE DATABASE absences_db;
