@@ -13,6 +13,12 @@ export default function Users() {
   const [succes, setSucces] = useState("");
   const [showForm, setShowForm] = useState(false);
   const [deleteConfirm, setDeleteConfirm] = useState({ isOpen: false, id: null, nom: "" });
+  // États pour la modification
+  const [editUser, setEditUser] = useState(null);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [editForm, setEditForm] = useState({ nom: "", email: "", role: "" });
+  const [editError, setEditError] = useState("");
+
   const { toast, showToast } = useToast();
 
   const charger = () => {
@@ -52,6 +58,39 @@ export default function Users() {
     }
   };
 
+  // Ouvrir le modal de modification
+  const openEditModal = (user) => {
+    setEditUser(user);
+    setEditForm({
+      nom: user.nom,
+      email: user.email,
+      role: user.role
+    });
+    setEditError("");
+    setShowEditModal(true);
+  };
+
+  // Mettre à jour l'utilisateur
+  const updateUser = async () => {
+    if (!editForm.nom || !editForm.email) {
+      setEditError("Le nom et l'email sont obligatoires");
+      return;
+    }
+    try {
+      await API.put(`/users/${editUser.id}`, {
+        nom: editForm.nom,
+        email: editForm.email,
+        role: editForm.role
+      });
+      showToast("Utilisateur modifié avec succès", "success");
+      setShowEditModal(false);
+      setEditUser(null);
+      charger();
+    } catch (err) {
+      setEditError(err.response?.data?.message || "Erreur modification");
+    }
+  };
+
   const usersFiltres = filtre ? users.filter(u => u.role === filtre) : users;
 
   return (
@@ -64,6 +103,49 @@ export default function Users() {
         title="Confirmation de suppression"
         message={`Voulez-vous vraiment supprimer ${deleteConfirm.nom} ?`}
       />
+
+      {/* Modal de modification */}
+      {showEditModal && (
+        <div style={{
+          position: "fixed", inset: 0, background: "rgba(0,0,0,0.6)",
+          display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1100
+        }}>
+          <div style={{
+            background: "white", borderRadius: "20px", padding: "24px",
+            width: "90%", maxWidth: "450px"
+          }}>
+            <h3 style={{ marginBottom: "16px" }}>Modifier l'utilisateur</h3>
+            {editError && <div style={{ background: "#fee2e2", color: "#991b1b", padding: "8px", borderRadius: "12px", marginBottom: "12px" }}>{editError}</div>}
+            <input
+              type="text"
+              placeholder="Nom complet"
+              value={editForm.nom}
+              onChange={e => setEditForm({ ...editForm, nom: e.target.value })}
+              style={{ width: "100%", padding: "10px", borderRadius: "12px", border: "1px solid #e2e8f0", marginBottom: "12px" }}
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              value={editForm.email}
+              onChange={e => setEditForm({ ...editForm, email: e.target.value })}
+              style={{ width: "100%", padding: "10px", borderRadius: "12px", border: "1px solid #e2e8f0", marginBottom: "12px" }}
+            />
+            <select
+              value={editForm.role}
+              onChange={e => setEditForm({ ...editForm, role: e.target.value })}
+              style={{ width: "100%", padding: "10px", borderRadius: "12px", border: "1px solid #e2e8f0", marginBottom: "20px" }}
+            >
+              <option value="etudiant">Étudiant</option>
+              <option value="agent">Agent</option>
+              <option value="admin">Admin</option>
+            </select>
+            <div style={{ display: "flex", gap: "12px", justifyContent: "flex-end" }}>
+              <button onClick={() => setShowEditModal(false)} style={{ padding: "8px 16px", borderRadius: "10px", border: "1px solid #cbd5e1", background: "white", cursor: "pointer" }}>Annuler</button>
+              <button onClick={updateUser} style={{ padding: "8px 16px", borderRadius: "10px", background: "#1e3a8a", color: "white", border: "none", cursor: "pointer" }}>Enregistrer</button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "24px" }}>
@@ -94,7 +176,15 @@ export default function Users() {
         <div style={{ background: "white", borderRadius: "20px", overflow: "hidden", boxShadow: "0 1px 3px rgba(0,0,0,0.1)" }}>
           <div style={{ overflowX: "auto" }}>
             <table style={{ width: "100%", borderCollapse: "collapse" }}>
-              <thead style={{ background: "#f8fafc" }}><tr><th style={{ padding: "12px", textAlign: "left" }}>Nom</th><th style={{ padding: "12px", textAlign: "left" }}>Email</th><th style={{ padding: "12px", textAlign: "left" }}>Rôle</th><th style={{ padding: "12px", textAlign: "left" }}>Créé le</th><th></th></tr></thead>
+              <thead style={{ background: "#f8fafc" }}>
+                <tr>
+                  <th style={{ padding: "12px", textAlign: "left" }}>Nom</th>
+                  <th style={{ padding: "12px", textAlign: "left" }}>Email</th>
+                  <th style={{ padding: "12px", textAlign: "left" }}>Rôle</th>
+                  <th style={{ padding: "12px", textAlign: "left" }}>Créé le</th>
+                  <th style={{ padding: "12px", textAlign: "left" }}>Actions</th>
+                </tr>
+              </thead>
               <tbody>
                 {usersFiltres.map(u => (
                   <tr key={u.id} style={{ borderBottom: "1px solid #f1f5f9" }}>
@@ -102,7 +192,10 @@ export default function Users() {
                     <td style={{ padding: "12px" }}>{u.email}</td>
                     <td style={{ padding: "12px" }}><span style={{ background: u.role === "admin" ? "#fee2e2" : u.role === "agent" ? "#f3e8ff" : "#dbeafe", padding: "4px 10px", borderRadius: "20px", fontSize: "12px" }}>{u.role}</span></td>
                     <td style={{ padding: "12px" }}>{new Date(u.created_at).toLocaleDateString("fr-FR")}</td>
-                    <td style={{ padding: "12px" }}><button onClick={() => demanderSuppression(u.id, u.nom)} style={{ background: "#fee2e2", color: "#991b1b", border: "none", padding: "4px 10px", borderRadius: "8px", cursor: "pointer" }}>Supprimer</button></td>
+                    <td style={{ padding: "12px" }}>
+                      <button onClick={() => openEditModal(u)} style={{ background: "#dbeafe", color: "#1e3a8a", border: "none", padding: "4px 10px", borderRadius: "8px", cursor: "pointer", marginRight: "8px" }}>Modifier</button>
+                      <button onClick={() => demanderSuppression(u.id, u.nom)} style={{ background: "#fee2e2", color: "#991b1b", border: "none", padding: "4px 10px", borderRadius: "8px", cursor: "pointer" }}>Supprimer</button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
