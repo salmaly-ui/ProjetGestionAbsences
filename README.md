@@ -99,6 +99,13 @@ https://github.com/user-attachments/assets/a18dc6f4-8a73-4be8-a2ad-736f758b9fa0
 
 
 ---
+## Demonstration (partie Mobile
+
+https://github.com/user-attachments/assets/5490f2ef-ab47-44aa-a21a-80723c412ed9
+
+)
+
+---
 ## 🗄️ BASE DE DONNÉES (MySQL)
 ```sql
 CREATE DATABASE absences_db;
