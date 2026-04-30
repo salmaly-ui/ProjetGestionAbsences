@@ -1,9 +1,9 @@
-# 📌 GESTION DES ABSENCES MÉDICALES
+#  GESTION DES ABSENCES MÉDICALES
 
 Architecture générale : Base de données MySQL, backend Node.js/Express, frontend React, application mobile Android Java.
 
 ---
-## 🧰 TECHNOLOGIES
+##  TECHNOLOGIES
 
 Backend : Node.js, Express, MySQL2, JWT, bcrypt, multer, dotenv.  
 Frontend : React 18, Axios, Chart.js, CSS moderne.  
@@ -11,7 +11,7 @@ Mobile : Java 17, RecyclerView, Retrofit, MaterialCardView, SharedPreferences, S
 
 ---
 
-## 📁 STRUCTURE DU PROJET
+##  STRUCTURE DU PROJET
 ```
 GestionAbsence/
 ├── backend/
@@ -150,7 +150,7 @@ VALUES ('Admin', 'admin@example.com', '$2b$10$...', 'admin');
 ```
 ---
 
-## 🚀 INSTALLATION
+##  INSTALLATION
 
 ### BACKEND
 cd backend  
@@ -174,7 +174,7 @@ http://192.168.x.x:5000/api/
 
 ---
 
-## 👥 FONCTIONNALITÉS
+##  FONCTIONNALITÉS
 
 Étudiant (Mobile) : déclaration absence, justificatif, suivi, historique  
 Agent (Frontend) : validation, refus, commentaires, statistiques  
@@ -182,7 +182,7 @@ Admin (Frontend) : gestion utilisateurs + système
 
 ---
 
-## 🔌 API PRINCIPALES
+##  API PRINCIPALES
 
 POST /api/auth/login  
 POST /api/auth/register  
@@ -198,7 +198,7 @@ DELETE /api/users/:id
 
 ---
 
-## ⚙️ CONFIGURATION
+##  CONFIGURATION
 
 JWT_SECRET=SECRET123  
 Configurer IP backend pour mobile  
@@ -206,7 +206,7 @@ Configurer db.js (MySQL)
 
 ---
 
-## 🛠️ DÉPANNAGE
+##  DÉPANNAGE
 
 MySQL error → vérifier connexion DB  
 Android NetworkError → utiliser IP locale  
@@ -215,7 +215,7 @@ Upload fichier → augmenter limite multer
 
 ---
 
-## 👨‍🎓 AUTEUR
+##  AUTEUR
 
 Salma Laouy  
 ENS Marrakech – Licence Éducation Informatique S6  
